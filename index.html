@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>vd-components</title>
+</head>
+<style>
+  body {
+    background: #E9E9E9;
+    padding: 20px;
+    padding-bottom: 200px;
+  }
+  .vd-calendar {
+    border: 1px solid #FFFFFF;
+  }
+</style>
+<body>
+<noscript>
+  <strong>We're sorry but vp-calendar doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+</noscript>
+<div id="app">
+  <vd-multiselect
+    :_placeholder="'Виберіть опцію'"
+    :_value="[]"
+    :_options="['Параметр 1', 'Параметр 2', 'Параметр 3',
+                    'Параметр 4', 'Параметр 5', 'Параметр 6',
+                    'Параметр 7', 'Параметр 8', 'Параметр 9']"
+    :_searchable="true"
+    :_multiple="true"
+  ></vd-multiselect>
+</div>
+
+<!-- built files will be auto injected -->
+<script src="dist/build.js"></script>
+</body>
+</html>
+
