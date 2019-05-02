@@ -1,17 +1,21 @@
 import Vue from 'vue'
 import App from './components/vd-calendar/index.vue'
 import vdMultiselect from './components/vd-multiselect/index'
+import vdNotifications from './components/vd-notifications'
+import vdNotificationsStack from './components/vd-notifications-stack'
 import BootstrapVue from 'bootstrap-vue'
+import Toast from 'bootstrap-vue/es/components/toast'
 import Modal from 'bootstrap-vue/es/components/modal'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import 'bootstrap/dist/css/bootstrap.css'
 
 import FullCalendar from 'vue-full-calendar'
 
-Vue.use(FullCalendar, BootstrapVue, Modal);
+Vue.use(FullCalendar, BootstrapVue, Modal, Toast);
 
 Vue.config.productionTip = false;
-Vue.component('vd-multiselect', vdMultiselect)
+Vue.component('vd-multiselect', vdMultiselect);
 
 //Пример событий
 const events = [
@@ -85,6 +89,9 @@ const config = {
 var app = new Vue({
     el: '#app',
     data: {
-        message: 'Привет, Vue!'
+    },
+    components: {
+      vdNotifications,
+      vdNotificationsStack
     }
 })
