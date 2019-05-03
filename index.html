@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>vd-components</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
 </head>
 <style>
   * {
@@ -10,11 +11,55 @@
   }
   body {
     background: #E9E9E9;
-    padding: 20px;
-    padding-bottom: 200px;
+    padding: 0 0 200px 0;
   }
   .vd-calendar {
     border: 1px solid #FFFFFF;
+  }
+  .nav {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    height: 60px;
+  }
+  .nav-right {
+    margin-left: auto;
+    margin-right: 40px;
+  }
+  .nav-right a {
+    color: #000;
+    padding: 1.5rem .6rem;
+    position: relative;
+    text-decoration: none;
+  }
+  .nav-right a:hover {
+    text-decoration: none;
+  }
+  .ti-bell {
+    color: #000;
+    padding: 0;
+    display: block;
+    font-family: 'themify';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+  }
+  .nav-right .badge {
+    background: red;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 10px;
+    font-size: 11px;
+    left: 8px;
+    position: absolute;
+    top: -2px;
+    padding: 0.25em 0.5em;
   }
 </style>
 <body>
@@ -22,6 +67,14 @@
   <strong>We're sorry but vp-calendar doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
 </noscript>
 <div id="app">
+  <nav class="nav">
+    <div class="nav-right">
+      <a href="#" class="js-toggle-notifications">
+        <i class="ti-bell"></i>
+        <span class="badge">5</span>
+      </a>
+    </div>
+  </nav>
   <vd-multiselect
     :_placeholder="'Виберіть опцію'"
     :_value="[]"
@@ -30,9 +83,13 @@
                     'Параметр 7', 'Параметр 8', 'Параметр 9']"
     :_searchable="true"
     :_multiple="true"
+    :_name="'param'"
   ></vd-multiselect>
+  <!--
   <vd-notifications></vd-notifications>
-  <vd-notifications-stack></vd-notifications-stack>
+  <vd-notifications-stack
+    :toggle-selector="'.js-toggle-notifications'"></vd-notifications-stack>
+    -->
 </div>
 
 <!-- built files will be auto injected -->

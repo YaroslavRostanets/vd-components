@@ -6,6 +6,7 @@
 
 <script>
   import Vue from 'vue'
+  import { store } from '../vd-notifications-stack/configureStore'
   import Toast from 'bootstrap-vue/es/components/toast'
   import BToast from 'bootstrap-vue/es/components/toast/toast'
   import BButton from 'bootstrap-vue/es/components/button/button'
@@ -19,11 +20,17 @@
         BToast, BButton, BToaster
       },
       methods: {
-        makeToast(variant = null) {
-          this.$bvToast.toast('Toast body content', {
-            title: `Variant ${variant || 'default'}`,
+        makeToast() {
+          let notification = {
+            date: 1556640293,
+            title: 'Додана подія',
+            text: 'Далеко-далеко за словесными горами...'
+          };
+          store.commit('addNotification', notification);
+          this.$bvToast.toast(notification.text, {
+            title: notification.title,
             toaster: 'b-toaster-bottom-right',
-            variant: variant,
+            variant: 'default',
             solid: true,
             appendToast: true
           })

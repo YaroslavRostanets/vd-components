@@ -7,6 +7,11 @@ export const store = new Vuex.Store({
     count: 0,
     notifications: [
       {
+        date: 1556869205,
+        title: 'Календар подій',
+        text: 'Lorem ipsum dolor sit amet'
+      },
+      {
         date: 1556813011,
         title: 'Календар подій',
         text: 'Проснувшись однажды утром после беспокойного ' +
@@ -22,12 +27,18 @@ export const store = new Vuex.Store({
         date: 1556640293,
         title: 'Календар подій',
         text: 'Lorem ipsum dolor sit amet'
+      },
+      {
+        date: 1556640293,
+        title: 'Календар подій',
+        text: 'Lorem ipsum dolor sit amet'
       }
     ]
   },
   mutations: {
-    addNotification (notification) {
-      state.count++
+    addNotification (state, notification) {
+      console.log(store.state.notifications);
+      state.notifications.push(notification)
     }
   }
 });

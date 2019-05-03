@@ -1,22 +1,29 @@
 <template>
-  <div class="one-notification">
-    <div class="date-num">
-      23.04.2019
+
+    <div class="one-notification">
+      <div class="date-num">
+        {{formattedDate}}
+      </div>
+      <div class="title">
+        {{notification.title}}
+      </div>
+      <div class="not-text">
+        {{notification.text}}
+      </div>
     </div>
-    <div class="title">
-      Календар подій
-    </div>
-    <div class="not-text">
-      Lorem ipsum dolor sit amet, consectetur
-      adipiscing elit, sed do eiusmod tempor
-      incididunt ut labore et dolore magna aliqua.
-    </div>
-  </div>
+
 </template>
 
 <script>
     export default {
-        name: "oneNotification"
+        name: "oneNotification",
+        props: ["notification"],
+        computed: {
+          formattedDate () {
+            let date = new Date(this.notification.date * 1000);
+            return `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
+          }
+        }
     }
 </script>
 
