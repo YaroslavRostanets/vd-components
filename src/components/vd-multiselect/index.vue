@@ -9,6 +9,7 @@
             :hide-selected="true"
             :max-height="150"
             :block-keys="['Tab', 'Enter']"
+            track-by="id"
             @input="onChange" @close="onTouch" @select="onSelect" v-on:search-change="onSearchChange">
         <template slot="beforeList">
           <input
@@ -36,10 +37,19 @@
         name: "vdMultiselect",
         props: ['_placeholder', '_value', '_options', '_searchable', '_multiple', '_name'],
         data() {
+            let options = () => {
+              return this._options.map((item) => {
+                return {
+                  id: Object.keys(item)[0],
+                  value: Object.values(item)[0]
+                }
+              });
+            };
+            console.log(options());
             return {
               placeholder: this._placeholder,
               value: this._value,
-              options: this._options,
+              options: options(),
               searchable: this._searchable,
               multiple: this._multiple,
               name: this._name
