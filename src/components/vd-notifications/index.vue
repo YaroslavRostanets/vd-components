@@ -1,6 +1,6 @@
 <template>
     <div>
-      <b-button @click="makeToast()" class="mb-2">Default</b-button>
+      <b-button @click="makeToast()" class="mb-2">Додати подію</b-button>
     </div>
 </template>
 
@@ -22,7 +22,7 @@
       methods: {
         makeToast() {
           let notification = {
-            date: 1556640293,
+            date: Math.round(Date.now() / 1000),
             title: 'Додана подія',
             text: 'Далеко-далеко за словесными горами...'
           };
