@@ -4,6 +4,7 @@
       <b-toast v-for="(toast, index) in toasts"
                :id="'vd-toast-' + index"
                :key="index"
+               @hidden="hiddenHandler(index)"
                variant="custom"
                toaster="b-toaster-bottom-right"
                :append-toast="true"
@@ -48,6 +49,9 @@
         }
       },
       methods: {
+        hiddenHandler (bvEvt) {
+          console.log(bvEvt);
+        },
         formattedDate (date) {
           let d = new Date(date * 1000);
           return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`

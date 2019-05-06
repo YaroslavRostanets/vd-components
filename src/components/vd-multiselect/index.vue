@@ -16,10 +16,17 @@
             <template slot="beforeList">
                 <input
                         v-for="(val, index) in value"
+                        v-if="_multiple"
                         type="text"
                         class="hide"
                         :value="val.id"
                         :name="getInputName(name, index)">
+                <input
+                  v-if="!_multiple"
+                  class="hide"
+                  :value="value.id"
+                  :name="_name"
+                  type="text">
             </template>
             <template slot="noResult">
                 <div class="multiselect-btn-element">
@@ -41,18 +48,19 @@
         props: ['_placeholder', '_value', '_options', '_searchable', '_multiple', '_name'],
         data() {
             const self = this;
-            let options = (function(){
-              return self._options.map((item) => {
+            let addFieldNames = (arr) => {
+              return arr.map((item) => {
                 return {
                   id: Object.keys(item)[0],
                   value: Object.values(item)[0]
                 }
-              });
-            })();
+              })
+            };
+
             return {
               placeholder: this._placeholder,
-              value: this._value,
-              options: options,
+              value: this._multiple ? addFieldNames( this._value ) : addFieldNames( this._value ).pop(),
+              options: addFieldNames( this._options ),
               searchable: this._searchable,
               multiple: this._multiple,
               name: this._name
