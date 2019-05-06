@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-for="(day, date) in notByDays" class="one-day">
-
+    <div v-for="(day, date) in notByDays"
+         class="one-day">
       <div class="date-now-wrap">
         <div class="date-now">
             <span class="day-of-week">
@@ -14,7 +14,8 @@
       </div>
 
       <one-notification
-        v-for="notification in day"
+        v-for="(notification, index) in day"
+        :key="index"
         :notification="notification"></one-notification>
 
     </div>

@@ -1,0 +1,38 @@
+.b-toast-custom {
+  .toast-header {
+    //display: none;
+    padding: 0;
+    height: 0;
+  }
+  .toast-date {
+    font-size: 12px;
+  }
+  .toast-title {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .toast-title-wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .icon {
+    margin-right: 10px;
+  }
+  .toast-text {
+    font-size: 12px;
+  }
+  .toast-body {
+    background-color: #FFFFA2;
+  }
+  .close {
+    position: relative;
+    top: 17px;
+    right: 8px;
+  }
+}
+.b-toast.b-toast-custom .toast {
+  border: 0 solid #FF0;
+  background-color: #FFFFA2;
+  color: #4F4F00;
+}

@@ -12,7 +12,7 @@
 <script>
     import Vue from 'vue'
     import Vuebar from 'vuebar';
-    import oneDayNotifications from './containers/oneDayNotificaations'
+    import oneDayNotifications from './containers/oneDayNotifications'
     import ctrlButtons from './containers/ctrlButtons'
     import { store } from './configureStore'
 
@@ -35,10 +35,9 @@
         },
         computed: {
           notByDays () {
-              console.log('RELOAD');
               const unixToJSTimestamp = unixTimestamp => unixTimestamp * 1000;
               const notByDays = {};
-              const notifications = store.state.notifications.sort((a,b) => b.date-a.date);
+              const notifications = store.state.notifications.slice().sort((a,b) => b.date-a.date);
               notifications.forEach((not, i) => {
                   let date = new Date(unixToJSTimestamp(not.date));
                   let dateFormatted = `${date.getMonth()}-${date.getDate()}-${date.getFullYear()}`;
@@ -59,28 +58,14 @@
             el.addEventListener('click', () => {
               self.isHide = !self.isHide
             });
-            document.addEventListener("click", function(){
+            document.addEventListener("click", function(event){
               let wrap = self.$refs.wrap;
-              console.log(event.target);
-              console.log(self.$refs);
-              var res = wrap.contains(event.target);
-              console.log(res);
+              if (!el.contains(event.target) && !wrap.contains(event.target)) {
+                self.isHide = true;
+              }
             });
           });
-        },
-        methods: {
-
         }
-    }
-
-    function onClickClose(elem) { // вызвать в момент показа окна, где elem - окно
-        function outsideClickListener(event) {
-            if (!elem.contains(event.target) && isVisible(elem)) {  // проверяем, что клик не по элементу и элемент виден
-                elem.style.display = 'none'; //скрыть
-                document.removeEventListener('click', outsideClickListener);
-            }
-        }
-        document.addEventListener('click', outsideClickListener)
     }
 
 </script>

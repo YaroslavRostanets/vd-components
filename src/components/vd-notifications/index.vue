@@ -1,6 +1,26 @@
 <template>
     <div>
-      <b-button @click="makeToast()" class="mb-2">Додати подію</b-button>
+      <b-button @click="makeToast()">Show toast</b-button>
+      <b-toast v-for="(toast, index) in toasts"
+               :id="'vd-toast-' + index"
+               :key="index"
+               variant="custom"
+               toaster="b-toaster-bottom-right"
+               :append-toast="true"
+               solid>
+        <div class="toast-title-wrap">
+          <div class="icon">
+            <information-icon :size="34"></information-icon>
+          </div>
+          <div class="toast-date-title">
+            <div class="toast-date">{{formattedDate(toast.date)}}</div>
+            <div class="toast-title">{{toast.title}} {{index}}</div>
+          </div>
+        </div>
+        <div class="toast-text">
+          {{toast.text}}
+        </div>
+      </b-toast>
     </div>
 </template>
 
@@ -11,15 +31,27 @@
   import BToast from 'bootstrap-vue/es/components/toast/toast'
   import BButton from 'bootstrap-vue/es/components/button/button'
   import BToaster from 'bootstrap-vue/es/components/toast/toaster'
+  import InformationIcon from "vue-material-design-icons/Information.vue"
+  import './b-toast-style.scss'
 
   Vue.use(Toast);
 
     export default {
       name: "vdNotifications",
       components: {
-        BToast, BButton, BToaster
+        BToast, BButton, BToaster, InformationIcon
+      },
+      data () {
+        return {
+          notifications: store.state.notifications,
+          toasts: []
+        }
       },
       methods: {
+        formattedDate (date) {
+          let d = new Date(date * 1000);
+          return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`
+        },
         makeToast() {
           let notification = {
             date: Math.round(Date.now() / 1000),
@@ -27,17 +59,16 @@
             text: 'Далеко-далеко за словесными горами...'
           };
           store.commit('addNotification', notification);
-          this.$bvToast.toast(notification.text, {
-            title: notification.title,
-            toaster: 'b-toaster-bottom-right',
-            variant: 'default',
-            solid: true,
-            appendToast: true
-          })
         }
       },
-      mounted () {
-        console.log('context: ', this);
+      watch: {
+        notifications () {
+          this.toasts.push( this.notifications.slice().pop() );
+          setTimeout(() => {
+            this.$bvToast.show('vd-toast-' + (this.toasts.length - 1));
+          }, 100);
+
+        }
       }
     }
 </script>
@@ -55,4 +86,5 @@
     height: 0;
     overflow: visible;
   }
+
 </style>
