@@ -22,7 +22,7 @@
                         :value="val.id"
                         :name="getInputName(name, index)">
                 <input
-                  v-if="!_multiple"
+                  v-if="!_multiple && value"
                   class="hide"
                   :value="value.id"
                   :name="_name"
