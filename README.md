@@ -1,29 +1,20 @@
-# README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+# vd-components
 
-### What is this repository for? ###
+> A Vue.js project
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+## Build Setup
 
-### How do I get set up? ###
+``` bash
+# install dependencies
+npm install
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+# serve with hot reload at localhost:8080
+npm run dev
 
-### Contribution guidelines ###
+# build for production with minification
+npm run build
+```
 
-* Writing tests
-* Code review
-* Other guidelines
+For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
