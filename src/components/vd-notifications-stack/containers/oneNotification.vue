@@ -5,7 +5,9 @@
         <div class="date-num">
           {{formattedDate}}
         </div>
-        <a href="#" @click="removeNotification(notification.id)" class="close-btn">
+        <a href="#" v-b-tooltip.bottomleft.hover
+           title="Відмітити повідомлення як прочитане"
+           @click="removeNotification(notification.id)" class="close-btn">
           <close-icon :size="20"></close-icon>
         </a>
       </div>
@@ -20,7 +22,12 @@
 </template>
 
 <script>
+    import Vue from 'vue'
     import CloseIcon from "vue-material-design-icons/Close"
+    import BButton from 'bootstrap-vue/es/components/button/button'
+    import vBTooltip from 'bootstrap-vue/es/directives/tooltip/tooltip'
+
+    Vue.directive('b-tooltip', vBTooltip);
 
     export default {
         name: "oneNotification",
@@ -32,7 +39,7 @@
           }
         },
         components: {
-          CloseIcon
+          CloseIcon, BButton
         }
     }
 </script>

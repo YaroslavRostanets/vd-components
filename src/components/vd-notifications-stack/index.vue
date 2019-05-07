@@ -67,8 +67,7 @@
           });
           document.addEventListener("click", function(event){
             let wrap = self.$refs.wrap;
-            console.log(event.currentTarget);
-            if (!el.contains(event.target) && !wrap.contains(event.target)) {
+            if (!el.contains(event.target) && !(wrap.contains(event.target) || event.target.closest('.close-btn')) ) {
               self.isHide = true;
             }
           });
