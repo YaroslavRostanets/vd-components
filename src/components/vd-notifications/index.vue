@@ -44,8 +44,13 @@
       },
       data () {
         return {
-          notifications: store.state.notifications,
+          prevNotifications: store.state.notifications.slice(0),
           toasts: []
+        }
+      },
+      computed: {
+        notifications () {
+          return store.state.notifications
         }
       },
       methods: {
@@ -58,6 +63,7 @@
         },
         makeToast() {
           let notification = {
+            id: Math.random(),
             date: Math.round(Date.now() / 1000),
             title: 'Додана подія',
             text: 'Далеко-далеко за словесными горами...'
@@ -66,12 +72,14 @@
         }
       },
       watch: {
-        notifications () {
-          this.toasts.push( this.notifications.slice().pop() );
-          setTimeout(() => {
-            this.$bvToast.show('vd-toast-' + (this.toasts.length - 1));
-          }, 100);
-
+        notifications: function (nextNotifications) {
+          if (nextNotifications.length > this.prevNotifications.length) {
+            this.toasts.push( this.notifications.slice().pop() );
+            setTimeout(() => {
+              this.$bvToast.show('vd-toast-' + (this.toasts.length - 1));
+            }, 100);
+          }
+          this.prevNotifications = [...nextNotifications];
         }
       }
     }

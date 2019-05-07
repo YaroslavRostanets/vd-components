@@ -14,9 +14,10 @@
       </div>
 
       <one-notification
-        v-for="(notification, index) in day"
-        :key="index"
-        :notification="notification"></one-notification>
+          v-for="(notification, index) in day"
+          :key="index + Math.random()"
+          :notification="notification"
+          :removeNotification="removeNotification"></one-notification>
 
     </div>
   </div>
@@ -27,7 +28,7 @@
 
     export default {
       name: "oneDayNotifications",
-      props: ['notByDays'],
+      props: ['notByDays', 'removeNotification'],
       components: {
         oneNotification
       },
@@ -58,6 +59,8 @@
   .date-now-wrap {
     display: flex;
     justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
   }
   .date-now {
     background: #FD5;
@@ -71,5 +74,4 @@
     font: italic 11px/16px Arial;
     margin: 0 0 0 10px;
   }
-
 </style>
