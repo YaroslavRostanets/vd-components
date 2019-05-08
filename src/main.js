@@ -8,8 +8,6 @@ import Toast from 'bootstrap-vue/es/components/toast'
 import Modal from 'bootstrap-vue/es/components/modal'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import 'bootstrap/dist/css/bootstrap.css'
-
 import FullCalendar from 'vue-full-calendar'
 
 Vue.use(FullCalendar, BootstrapVue, Modal, Toast);
